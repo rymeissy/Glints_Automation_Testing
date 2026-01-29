@@ -95,41 +95,4 @@ test.describe('Signup Page - UI Elements and Form Validation', () => {
         await expect(locationField).toHaveCSS('border-color', errorBorderColor);
         await expect.soft(whatsAppField).toHaveCSS('border-color', errorBorderColor);
     });
-
-    // test('TC06 - Verify location dropdown functionality', async ({ page }) => {
-    //     const locationField = page.locator('#location');
-    //
-    //     // Click to open dropdown
-    //     await locationField.click();
-    //
-    //     // Verify dropdown is visible
-    //     const dropdownList = page.locator('[role="listbox"]');
-    //     await expect(dropdownList).toBeVisible();
-    //
-    //     // Select a location option
-    //     const firstOption = page.locator('[role="option"]').first();
-    //     await firstOption.click();
-    //
-    //     // Verify location field has selected value
-    //     await expect(locationField).not.toHaveValue('');
-    // });
-
-    // test('TC08 - Verify password field shows/hides password text', async ({ page }) => {
-    //     const passwordField = page.locator('#sign-up-form-password');
-    //     const passwordValue = 'TestPassword123';
-    //
-    //     // Enter password
-    //     await passwordField.fill(passwordValue);
-    //
-    //     // Verify password is masked by default
-    //     await expect(passwordField).toHaveAttribute('type', 'password');
-    //
-    //     // Find and click show password toggle (adjust selector as needed)
-    //     const showPasswordToggle = page.locator('[aria-label*="show password"], [aria-label*="Show password"]').first();
-    //     if (await showPasswordToggle.isVisible()) {
-    //         await showPasswordToggle.click();
-    //         await expect(passwordField).toHaveAttribute('type', 'text');
-    //         await expect(passwordField).toHaveValue(passwordValue);
-    //     }
-    // });
 });
