@@ -6,7 +6,6 @@ test.describe('Signup Page - UI Elements and Form Validation', () => {
     });
 
     test('TC01 - Verify all mandatory fields are visible and enabled', async ({ page }) => {
-        // Locators for all required fields
         const signUpForm = {
             firstNameField: page.locator('#sign-up-form-first-name'),
             lastNameField: page.locator('#sign-up-form-last-name'),
@@ -99,7 +98,7 @@ test.describe('Signup Page - UI Elements and Form Validation', () => {
             const errorIcon = field
                 .locator('..')
                 .locator('..')
-                .getByTestId('icon-svg');
+                .locator('svg[data-testid="icon-svg"][fill="#EC272B"]');
 
             await expect.soft(errorIcon).toBeVisible();
         }
