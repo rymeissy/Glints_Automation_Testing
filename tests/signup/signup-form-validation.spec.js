@@ -82,7 +82,7 @@ test.describe('Signup Page - UI Elements and Form Validation', () => {
         }
     });
 
-    test('Validate error icon appears for empty required fields', async ({ page }) => {
+    test('TC06 - Validate error icon appears for empty required fields', async ({ page }) => {
         const signUpFields = {
             firstName: page.locator('#sign-up-form-first-name'),
             lastName: page.locator('#sign-up-form-last-name'),

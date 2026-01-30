@@ -25,9 +25,9 @@ test.describe('Signup Page - Positive Flow & Validation', () => {
         };
 
         // Fill input fields
-        for (const key in signUpFields) {
-            if (key === 'location') continue;
-            await signUpFields[key].fill(testData[key]);
+        for (const fillData in signUpFields) {
+            if (fillData === 'location') continue;
+            await signUpFields[fillData].fill(testData[fillData]);
         }
 
         // Select location
@@ -37,9 +37,6 @@ test.describe('Signup Page - Positive Flow & Validation', () => {
         return signUpFields;
     }
 
-    // =========================
-    // TC01
-    // =========================
     test('TC01 - Verify all fields accept valid input', async ({ page }) => {
         const signUpFields = await fillAllValidFields(page);
 
