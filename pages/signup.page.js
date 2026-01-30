@@ -1,9 +1,8 @@
-// pages/signup.page.js
 export class SignupPage {
     constructor(page) {
         this.page = page;
 
-        // ===== Input fields =====
+        // Input fields
         this.fields = {
             firstName: page.locator('#sign-up-form-first-name'),
             lastName: page.locator('#sign-up-form-last-name'),
@@ -13,11 +12,11 @@ export class SignupPage {
             whatsApp: page.locator('input[aria-label="WhatsApp Number"]'),
         };
 
-        // ===== Buttons & checkbox =====
+        // Buttons & checkbox =====
         this.signUpButton = page.getByRole('button', { name: 'Sign up', exact: true });
         this.newsletterCheckbox = page.getByText('Yes, fill me in on the latest');
 
-        // ===== Error messages =====
+        // Error messages
         this.errorMessages = {
             firstName: page.getByText('First name is required.'),
             lastName: page.getByText('Last name is required.'),
