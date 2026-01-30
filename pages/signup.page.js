@@ -12,7 +12,7 @@ export class SignupPage {
             whatsApp: page.locator('input[aria-label="WhatsApp Number"]'),
         };
 
-        // Buttons & checkbox =====
+        // Buttons & checkbox
         this.signUpButton = page.getByRole('button', { name: 'Sign up', exact: true });
         this.newsletterCheckbox = page.getByText('Yes, fill me in on the latest');
 
