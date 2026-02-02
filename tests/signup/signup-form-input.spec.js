@@ -85,30 +85,21 @@ test.describe('Signup Page - Positive Flow & Validation', () => {
      */
     test('TC04 - Success icon should disappear when Last Name field is cleared', async ({page}) => {
         const signup = new SignupPage(page);
-        const testData = signup.getTestData();
+        const { lastName } = signup.getTestData();
         const errorBorderColor = 'rgb(236, 39, 43)';
 
-        // Step 1: Fill Last Name with valid value
-        await signup.fillField('lastName', testData.lastName);
+        await signup.fillField('lastName', lastName);
         await page.locator('body').click();
-
-        // Pre-condition: success icon is visible
         await expect(signup.getSuccessIcon('lastName')).toBeVisible();
 
-        // Step 2: Clear Last Name field
+        // Clear field to trigger validation
         await signup.fields.lastName.fill('');
         await page.locator('body').click();
 
-        // Expected: success icon should disappear
+        // Assertions for expected behavior (Testing against the BUG)
         await expect.soft(signup.getSuccessIcon('lastName')).not.toBeVisible();
-
-        // Expected: error icon should appear
         await expect.soft(signup.getErrorIcon('lastName')).toBeVisible();
-
-        // Expected: border color turns red
         await expect.soft(signup.fields.lastName).toHaveCSS('border-color', errorBorderColor);
-
-        // Expected: error message is displayed
         await expect.soft(signup.errorMessages.lastName).toBeVisible();
     });
 
@@ -116,24 +107,22 @@ test.describe('Signup Page - Positive Flow & Validation', () => {
         const signup = new SignupPage(page);
         const testData = signup.getTestData();
 
-        // Ambil semua field kecuali location
+        // Get all field names except location
         const fieldsToTest = Object.keys(signup.fields).filter(
             fieldName => fieldName !== 'location'
         );
 
-        // STEP 1: Isi semua field
+        // Fill all fields with valid data
         for (const fieldName of fieldsToTest) {
             await signup.fillField(fieldName, testData[fieldName]);
         }
 
-        // STEP 2: Hapus isi field satu per satu
+        // Clear all fields and verify they are empty
         for (const fieldName of fieldsToTest) {
             await signup.fields[fieldName].fill('');
             await page.locator('body').click();
             await expect(signup.fields[fieldName]).toHaveValue('');
         }
     });
-
-
 });
 
