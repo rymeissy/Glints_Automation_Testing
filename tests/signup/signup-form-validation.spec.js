@@ -32,6 +32,11 @@ test.describe('Signup Page - UI Elements and Form Validation', () => {
         await expect(signup.signUpButton).toBeDisabled();
     });
 
+    /**
+     * Assumption for testing purpose:
+     * Last Name field is treated as REQUIRED.
+     * Test cases are written based on this assumption.
+     */
     test('TC04 - Validate error messages appear for all empty required fields', async ({ page }) => {
         const signup = new SignupPage(page);
 
@@ -42,6 +47,11 @@ test.describe('Signup Page - UI Elements and Form Validation', () => {
         }
     });
 
+    /**
+     * Assumption for testing purpose:
+     * Last Name field is treated as REQUIRED.
+     * Test cases are written based on this assumption.
+     */
     test('TC05 - Validate visual error indicators for empty required fields', async ({ page }) => {
         const signup = new SignupPage(page);
         const errorBorderColor = 'rgb(236, 39, 43)';
@@ -53,6 +63,12 @@ test.describe('Signup Page - UI Elements and Form Validation', () => {
         }
     });
 
+    /**
+     * Assumption for testing purpose:
+     * Last Name field is treated as REQUIRED.
+     * Skip location field as it does not have error icon
+     * Test cases are written based on this assumption.
+     */
     test('TC06 - Validate error icon appears for empty required fields', async ({ page }) => {
         const signup = new SignupPage(page);
 

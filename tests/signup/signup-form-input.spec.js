@@ -35,6 +35,11 @@ test.describe('Signup Page - Positive Flow & Validation', () => {
         await expect(signup.fields.location).not.toBeEmpty();
     });
 
+    /**
+     * Assumption for testing purpose:
+     * Assuming that the Location and WhatsApp Number fields have a normal border color (black).
+     * Test cases are written based on this assumption.
+     */
     test('TC02 - Verify normal border color appears for valid fields', async ({ page }) => {
         const signup = new SignupPage(page);
         const normalBorderColor = 'rgb(0, 0, 0)';
@@ -50,6 +55,12 @@ test.describe('Signup Page - Positive Flow & Validation', () => {
         }
     });
 
+    /**
+     * Assumption for testing purpose:
+     * Assuming that the WhatsApp Number field has a success icon.
+     * Skip location field as it does not have success icon.
+     * Test cases are written based on this assumption.
+     */
     test('TC03 - Verify success icons appear for correctly filled fields', async ({ page }) => {
         const signup = new SignupPage(page);
 
@@ -59,6 +70,15 @@ test.describe('Signup Page - Positive Flow & Validation', () => {
             await page.locator('body').click();
             await expect.soft(signup.getSuccessIcon(fieldName)).toBeVisible();
         }
+    });
+
+    /**
+     * Assumption for testing purpose:
+     * Last Name field is treated as REQUIRED.
+     * Test cases are written based on this assumption.
+     */
+    test('TC04 - Success icon should disappear when Last Name field is cleared', async ({ page }) => {)
+
     });
 });
 
