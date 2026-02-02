@@ -16,17 +16,18 @@ test.describe('Signup Page - Positive Flow & Validation', () => {
             if (fieldName === 'location') continue;
             await signup.fillField(fieldName, testData[fieldName]);
         }
-
         await signup.selectLocation(testData.location);
 
-        await expect(signup.fields.firstName).toHaveValue(testData.firstName);
-        await expect(signup.fields.lastName).toHaveValue(testData.lastName);
-        await expect(signup.fields.email).toHaveValue(testData.email);
-        await expect(signup.fields.password).not.toBeEmpty();
-        await expect(signup.fields.whatsApp).toHaveValue(testData.whatsApp);
-        await expect(signup.fields.location).not.toBeEmpty();
-    });
+        for (const fieldName of Object.keys(testData)) {
+            const fieldElement = signup.fields[fieldName];
 
+            if (fieldName === 'location' || fieldName === 'password') {
+                await expect(fieldElement).not.toBeEmpty();
+            } else {
+                await expect(fieldElement).toHaveValue(testData[fieldName]);
+            }
+        }
+    });
 
     /**
      * Assumption for testing purpose:
