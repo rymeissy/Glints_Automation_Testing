@@ -57,4 +57,16 @@ export class SignupPage {
             .locator('..')
             .locator('svg[data-testid="icon-svg"][fill="#93BD49"]');
     }
+
+    getTestData() {
+        return {
+            firstName: 'Sayang',
+            lastName: 'Kucing',
+            email: 'sayangkucing@example.com',
+            password: 'StrongPassw0rd!',
+            whatsApp: '81234567890',
+            location: 'Kab. Morowali, Sulawesi Tengah',
+        };
+    }
+
 }
