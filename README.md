@@ -1,6 +1,6 @@
 # Playwright UI Tests
 
-Simple Playwright test suite for Glints signup page validations.
+This repository contains a simple Playwright-based automation project focused on testing validations on the Glints signup page. Going forward, this project will not only cover the signup page, but will also grow to include testing for other features.
 
 ## Project structure
 - `playwright.config.js` — Playwright configuration (HTML reporter).
