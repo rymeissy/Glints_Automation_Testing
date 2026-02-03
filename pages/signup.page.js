@@ -20,7 +20,7 @@ export class SignupPage {
         this.errorMessages = {
             firstName: page.getByText('First name is required.'),
             lastName: page.getByText('Last name is required.'),
-            email: page.getByText('Email is required.'),
+            email: page.getByText('Email address is required.'),
             password: page.getByText('Password is required'),
             location: page.getByText('Your location is required.'),
             whatsApp: page.getByText('WhatsApp number is required.'),
