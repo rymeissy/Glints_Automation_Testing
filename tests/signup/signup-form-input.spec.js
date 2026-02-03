@@ -32,7 +32,7 @@ test.describe('Signup Page - Positive Flow & Validation', () => {
         }
     });
 
-    test('TC02 - Verify normal border color appears for valid fields', async ({ page }) => {
+    test('TC02 - Verify normal border color and success icons appear for valid fields', async ({ page }) => {
         const signup = new SignupPage(page);
         const testData = signup.getTestData();
         const normalBorderColor = 'rgb(0, 0, 0)';
@@ -43,27 +43,14 @@ test.describe('Signup Page - Positive Flow & Validation', () => {
 
         for (const fieldName of fieldsToTest) {
             await signup.fillField(fieldName, testData[fieldName]);
-        }
-        await signup.selectLocation(testData.location);
-
-        for (const field of Object.values(signup.fields)) {
-            await expect.soft(field).toHaveCSS('border-color', normalBorderColor);
-        }
-    });
-
-
-    test('TC03 - Verify success icons appear for correctly filled fields', async ({ page }) => {
-        const signup = new SignupPage(page);
-        const testData = signup.getTestData();
-
-        const fieldsToTest = Object.keys(signup.fields).filter(
-            fieldName => fieldName !== 'location'
-        );
-
-        for (const fieldName of fieldsToTest) {
-            await signup.fillField(fieldName, testData[fieldName]);
             await page.locator('body').click();
             await expect.soft(signup.getSuccessIcon(fieldName)).toBeVisible();
+        }
+
+        await signup.selectLocation(testData.location);
+
+        for (const fieldName of Object.values(signup.fields)) {
+            await expect.soft(fieldName).toHaveCSS('border-color', normalBorderColor);
         }
     });
 
@@ -72,7 +59,7 @@ test.describe('Signup Page - Positive Flow & Validation', () => {
      * Last Name field is treated as REQUIRED.
      * Expected: Success icon disappears, error icon/ error message/border appears when cleared.
      */
-    test('TC04 - Verify clearing filled fields triggers validation errors', async ({ page }) => {
+    test('TC03 - Verify clearing filled fields triggers validation errors', async ({ page }) => {
         const signup = new SignupPage(page);
         const testData = signup.getTestData();
         const errorBorderColor = 'rgb(236, 39, 43)';
@@ -100,5 +87,4 @@ test.describe('Signup Page - Positive Flow & Validation', () => {
             await expect.soft(signup.errorMessages[fieldName]).toBeVisible();
         }
     });
-
 });
