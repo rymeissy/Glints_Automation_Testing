@@ -35,40 +35,27 @@ test.describe('Signup Page - UI Elements and Form Validation', () => {
     /**
      * Assumption for testing purpose:
      * Last Name field is treated as REQUIRED.
-     * Test cases are written based on this assumption.
-     */
-    test('TC04 - Validate error messages appear for all empty required fields', async ({ page }) => {
-        const signup = new SignupPage(page);
-
-        await signup.submit();
-
-        for (const error of Object.values(signup.errorMessages)) {
-            await expect.soft(error).toBeVisible();
-        }
-    });
-
-    /**
-     * Assumption for testing purpose:
-     * Last Name field is treated as REQUIRED.
      * Skip location field as it does not have error icon
      * Test cases are written based on this assumption.
      */
-    test('TC05 - Validate visual error indicators for empty required fields', async ({ page }) => {
+    test('TC04 - Validate error messages and visual indicators for empty required fields', async ({ page }) => {
         const signup = new SignupPage(page);
         const errorBorderColor = 'rgb(236, 39, 43)';
 
         await signup.submit();
 
-        // Validate error border for all fields
-        for (const field of Object.values(signup.fields)) {
-            await expect.soft(field).toHaveCSS('border-color', errorBorderColor);
-        }
-
-        // Validate error icon (skip location)
         for (const fieldName of Object.keys(signup.fields)) {
+            const field = signup.fields[fieldName];
+
+            // Error message
+            await expect.soft(signup.errorMessages[fieldName]).toBeVisible();
+
+            // Error border
+            await expect.soft(field).toHaveCSS('border-color', errorBorderColor);
+
+            // Error icon (skip location)
             if (fieldName === 'location') continue;
             await expect.soft(signup.getErrorIcon(fieldName)).toBeVisible();
         }
     });
-
 });
