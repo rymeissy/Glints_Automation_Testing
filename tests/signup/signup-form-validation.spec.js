@@ -50,6 +50,7 @@ test.describe('Signup Page - UI Elements and Form Validation', () => {
     /**
      * Assumption for testing purpose:
      * Last Name field is treated as REQUIRED.
+     * Skip location field as it does not have error icon
      * Test cases are written based on this assumption.
      */
     test('TC05 - Validate visual error indicators for empty required fields', async ({ page }) => {
@@ -58,25 +59,16 @@ test.describe('Signup Page - UI Elements and Form Validation', () => {
 
         await signup.submit();
 
+        // Validate error border for all fields
         for (const field of Object.values(signup.fields)) {
             await expect.soft(field).toHaveCSS('border-color', errorBorderColor);
         }
-    });
 
-    /**
-     * Assumption for testing purpose:
-     * Last Name field is treated as REQUIRED.
-     * Skip location field as it does not have error icon
-     * Test cases are written based on this assumption.
-     */
-    test('TC06 - Validate error icon appears for empty required fields', async ({ page }) => {
-        const signup = new SignupPage(page);
-
-        await signup.submit();
-
+        // Validate error icon (skip location)
         for (const fieldName of Object.keys(signup.fields)) {
             if (fieldName === 'location') continue;
             await expect.soft(signup.getErrorIcon(fieldName)).toBeVisible();
         }
     });
+
 });
