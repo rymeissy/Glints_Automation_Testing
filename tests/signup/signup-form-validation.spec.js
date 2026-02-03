@@ -38,7 +38,7 @@ test.describe('Signup Page - UI Elements and Form Validation', () => {
      * Skip location field as it does not have error icon
      * Test cases are written based on this assumption.
      */
-    test('TC04 - Validate error messages and visual indicators for empty required fields', async ({ page }) => {
+    test('TC04 - Verify error messages and visual indicators for empty required fields', async ({ page }) => {
         const signup = new SignupPage(page);
         const errorBorderColor = 'rgb(236, 39, 43)';
 
